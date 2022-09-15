@@ -8,6 +8,22 @@ describe("teste dos testes", () => {
             password: "1234567890",
             password_confirmation: "1234567890"
         })
-        console.log(response)
+        expect(response.status).toBe(409)
+    })
+})
+
+describe("Deve retornar token de autenticação em caso de login", async () => {
+    it("Senha correta", async () => {
+        const response = await supertest(app).post('/login').send({
+            email: "teste@gmail.com",
+            password: "1234567890"
+        })
+        expect(response.status).toBe(200)
+    })
+
+    it('Cadastra prova', async()=>{
+        const response = await supertest(app).post('/test/').send({
+            
+        })
     })
 })

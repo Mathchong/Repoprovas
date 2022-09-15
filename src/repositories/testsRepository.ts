@@ -13,9 +13,30 @@ export async function registerTest(userData: testsCreation) {
     })
 }
 
-export async function findByDiscipline(disciplineId: number) {
-    const user = await client.disciplines.findMany({
-        where: { id: disciplineId }
+export async function findByDiscipline() {
+    const user = await client.terms.findMany({
+        select: {
+            number: true,
+            disciplines: {
+                select: {
+                    name: true,
+                    teacherDisciplines: {
+                        select: {
+                            teachers: {
+                                select: {
+                                    name: true,
+                                }
+                            },
+                            tests: {
+                                select: {
+                                    name: true,
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     })
     return user
 }

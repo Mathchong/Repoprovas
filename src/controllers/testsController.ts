@@ -1,19 +1,28 @@
-// import { Request, Response } from "express";
+import { Request, Response } from "express";
 
-// // import { createAccount, login } from "../services/userServices";
+import TestsService from "../services/testService";
 
-// export default class Users {
-//     async create(req: Request, res: Response) {
+const tests = new TestsService();
 
-//         await createAccount(req.body)
+export default class TestsController {
+    async create(req: Request, res: Response) {
 
-//         res.status(201).json({ status: 201, message: "Created" })
-//     }
+        await tests.create(req.body)
 
-//     async login(req: Request, res: Response) {
+        res.status(201).json({ status: 201, message: "Created" })
+    }
 
-//         const jwtToken = await login(req.body)
+    async getByDiscipline(req: Request, res: Response) {
 
-//         res.status(200).json({ status: 200, message: "Data Found", Data: { jwtToken } })
-//     }
-// }
+        const filteredTests = await tests.findByDiscipline()
+
+        res.status(200).json({ status: 200, message: "Data Found", Data: { filteredTests } })
+    }
+
+    async getByTeacher(req: Request, res: Response) {
+
+        const filteredTests = await tests.findByTeacher()
+
+        res.status(200).json({ status: 200, message: "Data Found", Data: { filteredTests } })
+    }
+}
