@@ -1,14 +1,18 @@
 import { testsCreation } from "../types/tests";
 
-import {registerTest} from '../repositories/testsRepository'
+import TestRepository from '../repositories/testsRepository'
+
+const tests = new TestRepository();
 
 export default class TestsService {
-    async create(test: testsCreation){
-        await registerTest(test)
+    async create(test: testsCreation) {
+        await tests.registerTest(test)
     }
 
     async findByDiscipline() {
+        const filteredTests = await tests.findByDiscipline()
 
+        return filteredTests
     }
 
     async findByTeacher() {
