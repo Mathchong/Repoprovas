@@ -16,6 +16,8 @@ export default class TestsService {
     }
 
     async findByTeacher() {
+        const filteredTests = await tests.findByTeacher()
 
+        return filteredTests
     }
 }

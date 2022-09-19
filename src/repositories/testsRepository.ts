@@ -39,7 +39,26 @@ export default class TestRepository {
     }
 
     async findByTeacher() {
-        
+        const tests = await client.teachers.findMany({
+            include:{
+                teacherDisciplines:{
+                    include: {
+                        disciplines:{
+                            include:{
+                                terms: true
+                            }
+                        },
+                        tests:{
+                            include: {
+                                categories: true
+                            }
+                        }
+                    }
+                }
+            }
+        })
+
+        return tests
     }
 
 }

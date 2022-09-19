@@ -16,13 +16,13 @@ export default class TestsController {
 
         const filteredTests = await tests.findByDiscipline()
 
-        res.status(200).json({ status: 200, message: "Data Found", Data: { filteredTests } })
+        res.status(200).json({ status: 200, message: "Data Found", Data: filteredTests })
     }
 
     async getByTeacher(req: Request, res: Response) {
 
         const filteredTests = await tests.findByTeacher()
 
-        res.status(200).json({ status: 200, message: "Data Found", Data: { filteredTests } })
+        res.status(200).json({ status: 200, message: "Data Found", Data: filteredTests })
     }
 }

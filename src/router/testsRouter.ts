@@ -9,6 +9,6 @@ const testsRouter = Router()
 
 testsRouter.post('/', schemaValidate(testSchema), tests.create)
 testsRouter.get('/byDiscipline', tests.getByDiscipline)
-testsRouter.get('/byTeacher',)
+testsRouter.get('/byTeacher', tests.getByTeacher)
 
 export default testsRouter;
