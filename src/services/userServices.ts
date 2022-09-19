@@ -7,6 +7,7 @@ import "../app/config"
 
 export async function createAccount(userData: userCreator) {
 
+    if(userData.password !== userData.password_confirmation) throw { status: 400, message: "Must send password_confirmation" }
     const user = await findByEmail(userData.email)
     if (user) throw { status: 409, message: "E-mail already in use" }
 
